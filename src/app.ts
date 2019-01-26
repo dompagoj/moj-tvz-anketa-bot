@@ -57,7 +57,11 @@ async function main() {
       return found
     })
     if (pAndV) {
-      await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
+      try {
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 2000 })
+      } catch (e) {
+        // unhandled
+      }
     } else {
       await page.evaluate(() => {
         const buttons = document.querySelectorAll('button')
@@ -68,7 +72,11 @@ async function main() {
           }
         }
       })
-      await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
+      try {
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 2000 })
+      } catch (e) {
+        // unhandled
+      }
 
       await page.evaluate(() => {
         const buttons = document.querySelectorAll('button')
@@ -79,7 +87,11 @@ async function main() {
           }
         }
       })
-      await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
+      try {
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 2000 })
+      } catch (e) {
+        // unhandled
+      }
     }
     await page.evaluate(() => {
       const inputs = document.querySelectorAll('input[type="radio"]') as NodeListOf<HTMLInputElement>
