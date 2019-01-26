@@ -50,13 +50,14 @@ async function main() {
       for (let j = 0; j < buttons.length; j++) {
         if (buttons[j].innerText === 'predavanja i vježbe') {
           found = true
+          buttons[j].click()
           break
         }
       }
       return found
     })
     if (pAndV) {
-      await page.waitForNavigation({ waitUntil: 'networkidle0' })
+      await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
     } else {
       await page.evaluate(() => {
         const buttons = document.querySelectorAll('button')
